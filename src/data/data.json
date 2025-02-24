@@ -1,0 +1,470 @@
+{
+  "cs201": {
+    "mmiller02": {
+      "prj1": 71,
+      "prj2": 71,
+      "prj3": 71,
+      "hw1": 94,
+      "hw2": 81,
+      "hw3": 86,
+      "hw4": 76,
+      "mid": 63,
+      "fin": null
+    },
+    "jmartin05": {
+      "prj1": 74,
+      "prj2": 64,
+      "prj3": 66,
+      "hw1": 63,
+      "hw2": 49,
+      "hw3": 46,
+      "hw4": 53,
+      "mid": 65,
+      "fin": 53
+    },
+    "sanderson02": {
+      "prj1": 80,
+      "prj2": 89,
+      "prj3": 63,
+      "hw1": 72,
+      "hw2": 72,
+      "hw3": 89,
+      "hw4": 67,
+      "mid": 77,
+      "fin": 72
+    },
+    "lwilliams": {
+      "prj1": 66,
+      "prj2": 65,
+      "prj3": 73,
+      "hw1": 52,
+      "hw2": 72,
+      "hw3": null,
+      "hw4": 65,
+      "mid": 44,
+      "fin": 63
+    },
+    "jfang03": {
+      "prj1": 29,
+      "prj2": 45,
+      "prj3": 15,
+      "hw1": 20,
+      "hw2": 46,
+      "hw3": 20,
+      "hw4": 49,
+      "mid": 41,
+      "fin": 44
+    },
+    "charris": {
+      "prj1": 71,
+      "prj2": 70,
+      "prj3": 92,
+      "hw1": 63,
+      "hw2": 80,
+      "hw3": 73,
+      "hw4": 77,
+      "mid": 68,
+      "fin": 65
+    },
+    "iparker": {
+      "prj1": 64,
+      "prj2": null,
+      "prj3": 40,
+      "hw1": 60,
+      "hw2": 58,
+      "hw3": 63,
+      "hw4": 42,
+      "mid": 45,
+      "fin": 42
+    },
+    "sanderson99": {
+      "prj1": 35,
+      "prj2": 17,
+      "prj3": 20,
+      "hw1": 35,
+      "hw2": 41,
+      "hw3": 18,
+      "hw4": 33,
+      "mid": 21,
+      "fin": 26
+    },
+    "pjackson": {
+      "prj1": 85,
+      "prj2": 85,
+      "prj3": 79,
+      "hw1": 71,
+      "hw2": 63,
+      "hw3": 83,
+      "hw4": 63,
+      "mid": 100,
+      "fin": 77
+    },
+    "tsarkar": {
+      "prj1": 75,
+      "prj2": 80,
+      "prj3": 65,
+      "hw1": 82,
+      "hw2": null,
+      "hw3": 92,
+      "hw4": 71,
+      "mid": 86,
+      "fin": 86
+    },
+    "jsmith98": {
+      "prj1": 16,
+      "prj2": 22,
+      "prj3": 43,
+      "hw1": 20,
+      "hw2": 22,
+      "hw3": 24,
+      "hw4": 16,
+      "mid": 30,
+      "fin": 28
+    },
+    "afletch02": {
+      "prj1": 67,
+      "prj2": 63,
+      "prj3": 87,
+      "hw1": 87,
+      "hw2": 86,
+      "hw3": 73,
+      "hw4": 88,
+      "mid": 75,
+      "fin": 83
+    },
+    "owilson06": {
+      "prj1": 63,
+      "prj2": 60,
+      "prj3": 55,
+      "hw1": 48,
+      "hw2": 45,
+      "hw3": 74,
+      "hw4": 75,
+      "mid": 66,
+      "fin": 71
+    },
+    "johndoe": {
+      "prj1": 45,
+      "prj2": 73,
+      "prj3": 54,
+      "hw1": 40,
+      "hw2": 43,
+      "hw3": 52,
+      "hw4": 62,
+      "mid": 42,
+      "fin": 65
+    },
+    "dchang01": {
+      "prj1": 67,
+      "prj2": 86,
+      "prj3": 93,
+      "hw1": 69,
+      "hw2": 79,
+      "hw3": 81,
+      "hw4": 74,
+      "mid": 87,
+      "fin": 96
+    },
+    "nwilson": {
+      "prj1": 50,
+      "prj2": 43,
+      "prj3": 75,
+      "hw1": 46,
+      "hw2": null,
+      "hw3": 51,
+      "hw4": 72,
+      "mid": 68,
+      "fin": 47
+    },
+    "wtaylor": {
+      "prj1": null,
+      "prj2": 71,
+      "prj3": 98,
+      "hw1": 96,
+      "hw2": 88,
+      "hw3": 76,
+      "hw4": 100,
+      "mid": null,
+      "fin": 64
+    },
+    "sraman04": {
+      "prj1": 95,
+      "prj2": 82,
+      "prj3": 93,
+      "hw1": 76,
+      "hw2": 73,
+      "hw3": 90,
+      "hw4": 96,
+      "mid": 81,
+      "fin": 71
+    },
+    "cmistry": {
+      "prj1": null,
+      "prj2": 72,
+      "prj3": 98,
+      "hw1": 63,
+      "hw2": 83,
+      "hw3": 100,
+      "hw4": 80,
+      "mid": 84,
+      "fin": 73
+    },
+    "djones01": {
+      "prj1": 54,
+      "prj2": 53,
+      "prj3": 40,
+      "hw1": 38,
+      "hw2": 59,
+      "hw3": 53,
+      "hw4": 71,
+      "mid": 43,
+      "fin": 41
+    },
+    "jmoore03": {
+      "prj1": 63,
+      "prj2": 65,
+      "prj3": 42,
+      "hw1": 48,
+      "hw2": 75,
+      "hw3": 68,
+      "hw4": 44,
+      "mid": 61,
+      "fin": 59
+    },
+    "jsmith04": {
+      "prj1": 45,
+      "prj2": 61,
+      "prj3": 64,
+      "hw1": 72,
+      "hw2": 51,
+      "hw3": 41,
+      "hw4": 47,
+      "mid": 55,
+      "fin": 59
+    },
+    "ebrown03": {
+      "prj1": 92,
+      "prj2": 78,
+      "prj3": null,
+      "hw1": 75,
+      "hw2": null,
+      "hw3": 69,
+      "hw4": 82,
+      "mid": 99,
+      "fin": 98
+    },
+    "jdoe02": {
+      "prj1": 98,
+      "prj2": 67,
+      "prj3": 76,
+      "hw1": 77,
+      "hw2": null,
+      "hw3": 100,
+      "hw4": 87,
+      "mid": 86,
+      "fin": 70
+    },
+    "ethanlee": {
+      "prj1": 45,
+      "prj2": 41,
+      "prj3": 35,
+      "hw1": 49,
+      "hw2": 42,
+      "hw3": 42,
+      "hw4": 14,
+      "mid": 39,
+      "fin": 47
+    }
+  },
+  "en101": {
+    "ebrown03": {
+      "paper1": "B",
+      "paper2": "B",
+      "paper3": "B",
+      "paper4": "A",
+      "paper5": "A",
+      "attendance": -1,
+      "fin": 71
+    },
+    "tjohnson": {
+      "paper1": "C",
+      "paper2": "D",
+      "paper3": "F",
+      "paper4": "F",
+      "paper5": "D",
+      "attendance": -7,
+      "fin": 25
+    },
+    "cmistry": {
+      "paper1": "C",
+      "paper2": "B",
+      "paper3": "B",
+      "paper4": "C",
+      "paper5": "C",
+      "attendance": -2,
+      "fin": null
+    },
+    "jdoe02": {
+      "paper1": null,
+      "paper2": "A",
+      "paper3": "A",
+      "paper4": "B",
+      "paper5": "B",
+      "attendance": -1,
+      "fin": 68
+    },
+    "lwilliams": {
+      "paper1": "B",
+      "paper2": "D",
+      "paper3": "D",
+      "paper4": "B",
+      "paper5": "C",
+      "attendance": -5,
+      "fin": 40
+    },
+    "ethanlee": {
+      "paper1": "C",
+      "paper2": "F",
+      "paper3": "F",
+      "paper4": "F",
+      "paper5": "C",
+      "attendance": -9,
+      "fin": 14
+    },
+    "sanderson99": {
+      "paper1": "F",
+      "paper2": "D",
+      "paper3": "F",
+      "paper4": "C",
+      "paper5": "F",
+      "attendance": -7,
+      "fin": 33
+    },
+    "jfang03": {
+      "paper1": "C",
+      "paper2": "D",
+      "paper3": "D",
+      "paper4": "C",
+      "paper5": "C",
+      "attendance": -6,
+      "fin": 24
+    },
+    "johndoe": {
+      "paper1": "C",
+      "paper2": "B",
+      "paper3": "B",
+      "paper4": "C",
+      "paper5": "B",
+      "attendance": -5,
+      "fin": 73
+    },
+    "ajohnson": {
+      "paper1": null,
+      "paper2": "C",
+      "paper3": "A",
+      "paper4": null,
+      "paper5": "A",
+      "attendance": -2,
+      "fin": 70
+    },
+    "wtaylor": {
+      "paper1": "B",
+      "paper2": "A",
+      "paper3": "C",
+      "paper4": "A",
+      "paper5": "A",
+      "attendance": -2,
+      "fin": 74
+    },
+    "rmartin00": {
+      "paper1": "B",
+      "paper2": "B",
+      "paper3": "D",
+      "paper4": "D",
+      "paper5": "C",
+      "attendance": -6,
+      "fin": 50
+    },
+    "cwhite": {
+      "paper1": null,
+      "paper2": "B",
+      "paper3": "A",
+      "paper4": "C",
+      "paper5": "B",
+      "attendance": -1,
+      "fin": 69
+    },
+    "gbose04": {
+      "paper1": "B",
+      "paper2": "A",
+      "paper3": "B",
+      "paper4": "B",
+      "paper5": "C",
+      "attendance": -3,
+      "fin": 99
+    },
+    "tsarkar": {
+      "paper1": "B",
+      "paper2": "A",
+      "paper3": "B",
+      "paper4": "B",
+      "paper5": "B",
+      "attendance": -3,
+      "fin": 75
+    },
+    "ebrown02": {
+      "paper1": "C",
+      "paper2": "A",
+      "paper3": "B",
+      "paper4": "C",
+      "paper5": "C",
+      "attendance": -2,
+      "fin": 98
+    },
+    "kgonz99": {
+      "paper1": "B",
+      "paper2": "B",
+      "paper3": "C",
+      "paper4": "B",
+      "paper5": "C",
+      "attendance": -4,
+      "fin": 72
+    },
+    "owilson06": {
+      "paper1": "C",
+      "paper2": "B",
+      "paper3": "C",
+      "paper4": "D",
+      "paper5": "D",
+      "attendance": -4,
+      "fin": 52
+    },
+    "dthomas03": {
+      "paper1": "C",
+      "paper2": "D",
+      "paper3": "F",
+      "paper4": null,
+      "paper5": "C",
+      "attendance": -5,
+      "fin": 15
+    },
+    "jsmith98": {
+      "paper1": "F",
+      "paper2": "C",
+      "paper3": "F",
+      "paper4": "C",
+      "paper5": "F",
+      "attendance": -9,
+      "fin": 38
+    },
+    "dchang01": {
+      "paper1": "C",
+      "paper2": "A",
+      "paper3": "C",
+      "paper4": "C",
+      "paper5": "A",
+      "attendance": -1,
+      "fin": 98
+    }
+  }
+}

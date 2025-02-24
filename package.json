@@ -1,0 +1,30 @@
+{
+  "name": "cwallis1-prj1",
+  "version": "1.0.0",
+  "description": "Node server where instance data stored in ram",
+  "main": "index.js",
+  "scripts": {
+    "clean": "shx rm -rf dist",
+    "build": "npx tsc",
+    "postbuild": "shx test -e dist/index.js && shx chmod a+x dist/index.js || true",
+    "watch": "tsc --watch",
+    "pretest": "npm run build",
+    "test": "mocha --reporter-options maxDiffSize=128000 dist/test",
+    "predebug-test": "npm run build",
+    "debug-test": "mocha --inspect-brk dist/test"
+  },
+  "type": "module",
+  "author": "Xavier Wallis",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "@types/chai": "^5.0.1",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.13.4",
+    "chai": "^5.2.0",
+    "mocha": "^11.1.0",
+    "shx": "^0.3.4"
+  }
+}
