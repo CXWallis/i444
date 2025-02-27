@@ -1,0 +1,23 @@
+{
+  "name": "hw1-sol",
+  "version": "1.0.0",
+  "main": "hw1-sol.js",
+  "scripts": {
+    "clean": "shx rm -rf dist",
+    "build": "npx tsc",
+    "watch": "tsc --watch",
+    "pretest": "npm run build",
+    "test": "node dist/hw1-tests.js",
+    "predebug-test": "npm run build",
+    "debug-test": "mocha --inspect-brk dist/test"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "shx": "^0.3.4",
+    "typescript": "^5.7.3"
+  }
+}
