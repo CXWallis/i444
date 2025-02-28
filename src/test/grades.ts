@@ -301,6 +301,7 @@ describe('Grades', () => {
 
     it('must retrieve all data and aggregates', () => {
       for (const sectionId of sectionIds) {
+
 	const data0 = DATA[sectionId];
 	const dataResult = G.getSectionData(sectionId);
 	assert(dataResult.isOk);

@@ -1,7 +1,8 @@
 import * as T from './types.js';
 import * as E from './errors.js';
-import { ColId, Student, StudentId } from "./types.js";
+import { AggrRowId, CategoryId, ColId, RowData, RowId, Student, StudentId } from "./types.js";
 import { StudentHdrSpec } from "./types.js";
+import { assert } from "chai";
 
 // application error codes are defined so that they can be mapped to
 // meaningful HTTP 4xx error codes.  In particular, 400 BAD REQUEST,
@@ -50,6 +51,9 @@ export default class Grades  {
     if ( row_aggregate_headers.aggrFnName.includes('xxx') )
       return E.errResult( E.Err.err(`unknown aggregate function "${row_aggregate_headers.aggrFnName}"`, 'BAD_CONTENT') );
 
+    for ( const row of row_headers.filter( row => row._tag === 'aggrRow' ) )
+        this.sections.set( sectionInfo.id, { ...this.sections.get(sectionInfo.id) ?? {}, [row.id]:{ id: row.id, firstName: '', lastName: '' } } )
+
     this.section_infos.set( sectionInfo.id, sectionInfo );
     return E.okResult(undefined);
   }
@@ -68,8 +72,10 @@ export default class Grades  {
         return E.errResult( E.Err.err(`unknown sectionId "${sectionId}"`, 'NOT_FOUND') );
     if ( !this.students.has( studentId ) )
         return E.errResult( E.Err.err(`unknown studentId "${studentId}"`, 'NOT_FOUND') );
+    const columns = Object.keys( this.section_infos.get( sectionId )!.colHdrs );
 
-    this.sections.set( sectionId, {...this.sections.get( sectionId ), [studentId]:{} } )
+    const initial_data_values = Object.fromEntries(columns.filter(( value ) => !value.endsWith('Name') && !value.includes('id')).map(column => [column, null]));
+    this.sections.set( sectionId, {...this.sections.get( sectionId ), [studentId]: {...this.students.get( studentId ), ...initial_data_values }   } )
     return E.okResult(undefined);
   }
 
@@ -84,8 +90,6 @@ export default class Grades  {
    */
   addScore(sectionId: T.SectionId, studentId: T.StudentId, colId: T.ColId,
 	   score: T.Score) : E.Result<void, E.Err> {
-    if ( score?.toString().search('null|[D-Z | d-z]') !== -1 || (score as number) < 0 || (score as number) > 100 )
-        return E.errResult( E.Err.err(`score "${score}" out of range`, 'BAD_CONTENT') );
     if ( !this.sections.has( sectionId ) )
         return E.errResult( E.Err.err(`unknown sectionId "${sectionId}"`, 'NOT_FOUND') );
     if ( !this.students.has( studentId ) )
@@ -94,12 +98,28 @@ export default class Grades  {
         return E.errResult( E.Err.err(`student "${studentId}" not enrolled in section "${sectionId}"`, 'BAD_CONTENT') );
     if ( !this.section_infos.get(sectionId)!.colHdrs[colId] )
         return E.errResult( E.Err.err(`unknown colId "${colId}"`, 'NOT_FOUND') );
-    if ( this.section_infos.get(sectionId)!.colHdrs[colId].entryType === 'textScore' && typeof score === 'number' )
-        return E.errResult( E.Err.err(`score "${score}" inappropriate for textScore`, 'BAD_CONTENT') );
-    if ( this.section_infos.get(sectionId)!.colHdrs[colId].entryType === 'numScore' && typeof score === 'string' )
-        return E.errResult( E.Err.err(`score "${score}" inappropriate for numScore`, 'BAD_CONTENT') );
-    this.sections.get( sectionId )![studentId][colId] = score;
+    const section_info = this.section_infos.get( sectionId )!;
 
+    if ( score !== null && section_info.colHdrs[colId].entryType === 'numScore' && typeof score !== 'number' )
+        return E.errResult( E.Err.err(`score "${score}" is not a number`, 'BAD_CONTENT') );
+
+    if ( score !== null && section_info.colHdrs[colId].entryType === 'textScore' && typeof score !== 'string' )
+        return E.errResult( E.Err.err(`score "${score}" is not a string`, 'BAD_CONTENT') );
+
+    if ( typeof score === 'string' ) {
+        const text_score_header = section_info.colHdrs[colId] as T.TextScoreHdrSpec;
+        if ( !text_score_header.vals?.includes( score ) )
+            return E.errResult( E.Err.err(`score "${score}" is not in the allowed values`, 'BAD_CONTENT') );
+    }
+
+    if ( typeof score === 'number' ) {
+        const number_score_header = section_info.colHdrs[colId] as T.NumScoreHdrSpec;
+        if ( score > number_score_header.max! || score < number_score_header.min! )
+            return E.errResult( E.Err.err(`score "${score}" is not in the allowed range`, 'BAD_CONTENT') );
+    }
+
+    this.sections.get( sectionId )![studentId][colId] = score;
+    this.compute_aggregates( sectionId );
     return E.okResult(undefined);
   }
 
@@ -122,8 +142,11 @@ export default class Grades  {
     if ( !this.section_infos.get(sectionId)!.colHdrs[colId] )
         return E.errResult( E.Err.err(`unknown colId "${colId}"`, 'NOT_FOUND') );
 
-    const section = this.sections.get( sectionId )!;
-    return E.okResult( section[rowId][colId] );
+    if ( rowId._brand == 'aggrRowId' ) {
+        return E.okResult( this.sections.get(sectionId)![rowId][colId] ); // TODO: check if this is correct
+    }
+
+    return E.okResult( this.sections.get(sectionId)![rowId][colId] );
   }
 
   /** return full data (including aggregate data) for sectionId.  If
@@ -151,19 +174,57 @@ export default class Grades  {
   getSectionData(sectionId: T.SectionId, rowIds: T.RowId[] = [],
 	  colIds: T.ColId[] = []) : E.Result<T.SectionData, E.Err>
   {
+      this.compute_aggregates( sectionId );
     if ( !this.sections.has( sectionId ) )
         return E.errResult( E.Err.err(`unknown sectionId "${sectionId}"`, 'NOT_FOUND') );
-    const section = this.sections.get( sectionId )!;
-    // rowid map to filter columns
+    let section = this.sections.get( sectionId )!;
+
     if ( !rowIds.length && !colIds.length )
       return E.okResult( section );
+    if ( rowIds.length ) {
+        let result = {};
+        for ( const student of rowIds )
+            result = { ...result, [student]: section[student] };
+        return E.okResult( result );
+    }
+    if ( colIds.length ) {
+        let result = {};
+        for ( const [ student, student_data ] of Object.entries( section ) )
+            result = { ...result, [ student ] : { ...Object.entries(student_data).filter( ([ key, _]) => colIds.includes( key as ColId ) ) } };
+        return E.okResult( result );
+    }
 
-    console.log( section )
-    return E.okResult( section );
+    return E.okResult( Object.fromEntries( Object.entries( section ).filter( ([k, v]) => rowIds.includes(k as StudentId) && colIds.includes(k as ColId) ) ) );
   }
 
   //TODO: add private methods as needed.
+  compute_aggregates( sectionId: T.SectionId ) {
+      const section = this.sections.get( sectionId );
+      assert( section );
+      const section_info = this.section_infos.get( sectionId );
+      assert( section_info );
 
+
+      for ( const student of Object.keys( section ) as RowId[] ) {
+            for ( const aggregate_data of Object.values(this.section_infos.get(sectionId)!.colHdrs).filter( column => column._tag === 'aggrCol')) {
+                const method = this.row_aggregate_functions[aggregate_data.aggrFnName] as T.RowAggrFn;
+                const result = method( section_info, section, student as StudentId, aggregate_data.args ?? [] );
+                if ( !result.isOk ) return E.errResult( result.err );
+                section[student][aggregate_data.id] = result.val;
+            }
+      }
+
+      for ( const column of Object.values( section_info.colHdrs ).filter( column => column._tag !== 'student').map(column=>column.id) as ColId[] ) {
+          for ( const column_aggregate_method of Object.values(section_info.rowHdrs).filter( header => header._tag === 'aggrRow')) {
+              const method = this.column_aggregate_functions[ column_aggregate_method.aggrFnName ] as T.ColAggrFn;
+              const result = method( section_info, section, column, column_aggregate_method.args );
+              if ( !result.isOk ) return E.errResult( result.err );
+              section[column_aggregate_method.id][column] = result.val;
+          }
+      }
+
+      this.sections.set( sectionId, section );
+  }
 
 };
 

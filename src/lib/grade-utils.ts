@@ -74,4 +74,3 @@ function colWidths(data: T.SectionData) : Record<string, number> {
   }
   return widths;
 }
-
