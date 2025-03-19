@@ -1,0 +1,33 @@
+{
+  "name": "prj2-sol",
+  "version": "1.0.0",
+  "main": "dist/main.js",
+  "scripts": {
+    "clean": "shx rm -rf dist",
+    "build": "npx tsc",
+    "postbuild": "shx cp -r src/lib/prj1-sol/data dist/lib/prj1-sol/data && chmod a+x dist/index.js",
+    "watch": "tsc --watch",
+    "pretest": "npm run build",
+    "test": "mocha --reporter-options maxDiffSize=128000 dist/test",
+    "predebug-test": "npm run build",
+    "debug-test": "mocha --inspect-brk dist/test"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/chai": "^5.0.1",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.13.0",
+    "@types/semver": "^7.5.8",
+    "chai": "^5.1.2",
+    "mocha": "^11.1.0",
+    "mongodb": "^6.15.0",
+    "semver": "^7.7.1",
+    "shx": "^0.3.4",
+    "typescript": "^5.7.3",
+    "mongodb-memory-server":"^10.1.4"
+  }
+}
